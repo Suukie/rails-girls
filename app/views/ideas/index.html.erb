@@ -1,0 +1,34 @@
+<h1>Liste Ideen</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Beschreibung</th>
+      <th>Picture</th>
+      <th>Kommentare</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ideas.each do |idea| %>
+      <tr>
+        <td><%= idea.name %></td>
+        <td><%= idea.description %></td>
+        <td><%= idea.picture %></td>
+        <td><%= idea.comments.pluck(:body).join(",") %></td>
+        <td><%= link_to 'Show', idea %></td>
+        <td><%= link_to 'Bearbeiten', edit_idea_path(idea) %></td>
+        <td><%= link_to 'Löschen', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+
+<%= link_to 'Neue Idee', new_idea_path %>
